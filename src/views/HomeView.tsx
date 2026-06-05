@@ -153,87 +153,156 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
     <div className="space-y-16 sm:space-y-24 bg-white">
       
       {/* 1. HERO SECTION & INTEGRATIVE ESTIMATOR */}
-      <section className="relative pt-8 sm:pt-12 pb-12 sm:pb-24 overflow-hidden bg-white" aria-label="Welcome to Ekta Logistics">
-        {/* Abstract grids and illuminated glows */}
-        <div className="absolute inset-x-0 top-0 h-[650px] bg-gradient-to-b from-slate-50 to-white/0 pointer-events-none" />
-        <div className="absolute right-0 top-0 w-1/2 h-[650px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.06),transparent_60%)] pointer-events-none" />
-        <div className="absolute left-10 top-1/3 w-96 h-96 bg-[radial-gradient(ellipse_at_center,rgba(249,115,22,0.02),transparent_50%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-100 pointer-events-none" />
+      <section className="relative pt-8 sm:pt-16 pb-12 sm:pb-28 overflow-hidden" aria-label="Welcome to Ekta Logistics">
+        {/* Premium layered background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
+        
+        {/* Animated floating gradient orbs */}
+        <motion.div
+          animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute -right-32 top-20 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-blue-600/[0.07] via-blue-400/[0.04] to-transparent blur-3xl pointer-events-none"
+        />
+        <motion.div
+          animate={{ x: [0, -20, 0], y: [0, 25, 0], scale: [1, 1.15, 1] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute -left-20 top-1/3 w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-orange-500/[0.06] via-amber-300/[0.03] to-transparent blur-3xl pointer-events-none"
+        />
+        <motion.div
+          animate={{ x: [0, 15, 0], y: [0, -15, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+          className="absolute right-1/4 bottom-10 w-[300px] h-[300px] rounded-full bg-gradient-to-t from-emerald-500/[0.04] to-transparent blur-3xl pointer-events-none"
+        />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Hero Heading Left Side */}
-            <div className="lg:col-span-7 space-y-7 text-left">
-              <div className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-2xl bg-slate-900 text-white border border-white/10 shadow-lg">
-                <span className="flex h-2 w-2 rounded-full bg-orange-500 animate-ping" />
-                <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest uppercase">
-                  National Logistical Approved Network
+            <motion.div 
+              className="lg:col-span-7 space-y-8 text-left"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {/* Glass Badge */}
+              <motion.div 
+                className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full glass-panel border border-white/60 shadow-lg shadow-slate-900/5"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
                 </span>
-              </div>
+                <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest uppercase text-slate-700">
+                  National Logistics Network — Live & Active
+                </span>
+              </motion.div>
 
-              <div className="space-y-4">
-                <h1 className="font-poppins text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 leading-tight">
-                  India's Trusted <br />
-                  <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-orange-500 bg-clip-text text-transparent">
-                    Packers & Movers
+              <div className="space-y-5">
+                <h1 className="font-poppins text-4xl sm:text-5xl lg:text-[64px] font-black tracking-tight leading-[1.1]">
+                  <span className="text-slate-950">India's Most</span><br />
+                  <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
+                    Trusted
+                  </span>
+                  <span className="text-slate-950"> </span>
+                  <span className="relative inline-block">
+                    <span className="bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 bg-clip-text text-transparent">
+                      Packers & Movers
+                    </span>
+                    <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
+                      <path d="M2 8 C 80 2, 220 2, 298 8" stroke="url(#underline-grad)" strokeWidth="3" strokeLinecap="round" fill="none" />
+                      <defs>
+                        <linearGradient id="underline-grad" x1="0" y1="0" x2="300" y2="0">
+                          <stop offset="0%" stopColor="#2563EB" />
+                          <stop offset="100%" stopColor="#F97316" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
                   </span>
                 </h1>
-                <h2 className="font-sans text-lg sm:text-xl font-bold text-slate-800 tracking-tight">
-                  Safe Relocation. Secure Transport. Nationwide Coverage.
-                </h2>
+                <p className="font-sans text-base sm:text-lg text-slate-500 leading-relaxed max-w-xl font-medium">
+                  Premium household & corporate relocation from Gurugram to all India. 
+                  <span className="text-slate-700 font-semibold"> Flat rates. Zero hidden charges. IBA-approved transit.</span>
+                </p>
               </div>
 
-              <p className="font-sans text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl font-medium">
-                Established and directed directly from the Maruti Truck Parking hub in Gurugram, EKTA LOGISTICS delivers certified, flat-rate household, army, corporate cabinet, and vehicle container transitions with zero compromise.
-              </p>
-
-              {/* Core Trust Indicators - Grid Panel */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-4 border-t border-slate-100 max-w-3xl">
+              {/* Premium Trust Indicators */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
                 {[
-                  { title: '10,000+ Moves', desc: 'Securely Executed' },
-                  { title: 'Pan India Hubs', desc: 'State Authorization' },
-                  { title: '24/7 Dispatch', desc: 'Support Online' },
-                  { title: 'Professional Crew', desc: '105+ Direct Staff' }
+                  { value: '10K+', label: 'Moves Done', gradient: 'from-blue-600 to-blue-700', icon: '📦' },
+                  { value: '100+', label: 'Cities', gradient: 'from-emerald-600 to-emerald-700', icon: '🗺️' },
+                  { value: '24/7', label: 'Live Support', gradient: 'from-purple-600 to-purple-700', icon: '🕐' },
+                  { value: '4.9★', label: 'Google Rated', gradient: 'from-orange-500 to-orange-600', icon: '⭐' },
                 ].map((item, idx) => (
-                  <div key={idx} className="bg-slate-50/50 border border-slate-100 p-3 rounded-2xl">
-                    <div className="text-sm font-black text-blue-600 font-sans tracking-tight leading-none">{item.title}</div>
-                    <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1.5 font-mono">{item.desc}</div>
-                  </div>
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 + idx * 0.1, duration: 0.5 }}
+                    className="group relative bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:shadow-blue-600/5 hover:-translate-y-1 transition-all duration-300 cursor-default"
+                  >
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-600/0 to-orange-500/0 group-hover:from-blue-600/[0.02] group-hover:to-orange-500/[0.02] transition-all" />
+                    <div className="relative">
+                      <div className="text-lg mb-1">{item.icon}</div>
+                      <div className={`text-lg sm:text-xl font-black bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent font-poppins leading-none`}>
+                        {item.value}
+                      </div>
+                      <div className="text-[9px] sm:text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1 font-mono">
+                        {item.label}
+                      </div>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
 
-              {/* CTA Triggers Section */}
-              <div className="flex flex-wrap gap-4 pt-3">
-                <button
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-4 pt-2">
+                <motion.button
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
                   onClick={() => {
                     window.scrollTo({ top: 380, behavior: 'smooth' });
                   }}
-                  className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-poppins text-xs font-extrabold tracking-wider uppercase px-7 py-4 rounded-2xl transition-all shadow-xl hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                  className="group relative flex items-center space-x-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-poppins text-xs font-extrabold tracking-wider uppercase px-8 py-4 rounded-2xl transition-all shadow-xl shadow-blue-600/25 hover:shadow-2xl hover:shadow-blue-600/30 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                 >
-                  <span>Get Shifting Quote</span>
-                  <ArrowRight className="h-4 w-4" />
-                </button>
+                  <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-white/0 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="relative">Get Shifting Quote</span>
+                  <ArrowRight className="relative h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
 
-                <a
+                <motion.a
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9, duration: 0.5 }}
                   href={`https://wa.me/919690499137?text=${encodeURIComponent('Hello Ekta Logistics. I want to book a professional packing and moving job.')}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center space-x-2.5 bg-[#FFFFFF] hover:bg-slate-50 text-slate-800 border-2 border-slate-200 font-poppins text-xs font-extrabold tracking-wider uppercase px-7 py-4 rounded-2xl transition-all shadow-md"
+                  className="group flex items-center space-x-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-poppins text-xs font-extrabold tracking-wider uppercase px-8 py-4 rounded-2xl transition-all shadow-lg shadow-emerald-600/20 hover:shadow-xl hover:shadow-emerald-500/25 hover:-translate-y-0.5"
                 >
-                  <MessageCircle className="h-5 w-5 text-emerald-600 fill-emerald-500/20" />
+                  <MessageCircle className="h-5 w-5 fill-white/20 group-hover:scale-110 transition-transform" />
                   <span>WhatsApp Crew</span>
-                </a>
+                </motion.a>
               </div>
-            </div>
+            </motion.div>
 
             {/* Hero Interactive Estimator - Right Column */}
-            <div className="lg:col-span-5 relative mt-6 lg:mt-0">
-              <div className="absolute -inset-1 rounded-[32px] bg-gradient-to-r from-blue-600 via-orange-500 to-blue-700 opacity-20 blur-2xl" />
+            <motion.div 
+              className="lg:col-span-5 relative mt-6 lg:mt-0"
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {/* Premium glow behind form */}
+              <div className="absolute -inset-3 rounded-[40px] bg-gradient-to-br from-blue-600/15 via-orange-500/10 to-blue-700/15 blur-2xl opacity-60" />
+              <div className="absolute -inset-1 rounded-[32px] bg-gradient-to-br from-blue-600/5 to-orange-500/5" />
               <div className="relative">
                 <QuoteForm onLeadSubmit={onLeadSubmit} />
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -241,19 +310,21 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
 
       {/* 2. LIVE TELEMETRY DEPARTURES STATUS BOARD */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-950 text-white rounded-3xl p-6 sm:p-8 border border-white/10 relative overflow-hidden shadow-2xl">
+        <div className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-10 border border-white/[0.06] relative overflow-hidden shadow-2xl">
           <div className="absolute inset-0 bg-dot-pattern opacity-10" />
-          <div className="absolute -right-24 -top-24 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -right-32 -top-32 w-96 h-96 bg-blue-500/[0.07] rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -left-20 -bottom-20 w-72 h-72 bg-orange-500/[0.05] rounded-full blur-3xl pointer-events-none" />
           
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="space-y-3 max-w-md text-center lg:text-left">
-              <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-md bg-blue-600/20 text-blue-400 font-mono text-[9px] font-bold tracking-widest uppercase">
-                ⚙ Verified Logistics Framework
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+            <div className="space-y-4 max-w-md text-center lg:text-left">
+              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 font-mono text-[10px] font-bold tracking-widest uppercase">
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
+                <span>Verified Logistics Framework</span>
               </div>
-              <h3 className="font-poppins text-2xl font-black text-white tracking-tight leading-none">
-                National Security Seals
+              <h3 className="font-poppins text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight">
+                National Security<br />Certification Seals
               </h3>
-              <p className="text-slate-400 text-xs sm:text-sm font-sans font-medium leading-relaxed leading-relaxed">
+              <p className="text-slate-400 text-xs sm:text-sm font-sans font-medium leading-relaxed">
                 Licensed operations matching certified standards of protective layer lamination, secure cargo containers, and IBA approvals.
               </p>
             </div>
@@ -261,39 +332,27 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
             {/* Departure Status Matrix */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full lg:flex-1 lg:max-w-4xl font-sans">
               
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-start space-x-3 transition-colors hover:bg-white/10">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-500/20 text-orange-400">
-                  <Award className="h-5 w-5" />
-                </div>
-                <div>
-                  <h4 className="text-[11px] font-bold tracking-wider text-slate-300 font-mono uppercase">ISO 9001:2015</h4>
-                  <span className="text-[8px] text-orange-500 font-mono font-bold uppercase block mt-0.5">Approved System</span>
-                  <p className="text-[10px] text-slate-400 mt-1 leading-normal font-medium">Strict administrative rules on inventory checks and high-durability wrapping layers.</p>
-                </div>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-start space-x-3 transition-colors hover:bg-white/10">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-500/20 text-blue-400">
-                  <ShieldCheck className="h-5 w-5" />
-                </div>
-                <div>
-                  <h4 className="text-[11px] font-bold tracking-wider text-slate-300 font-mono uppercase">Full Cargo Care</h4>
-                  <span className="text-[8px] text-blue-400 font-mono font-bold uppercase block mt-0.5">Vetted Supervisors</span>
-                  <p className="text-[10px] text-slate-400 mt-1 leading-normal font-medium">Full background-checks executed on all packing staff and dedicated truck drivers.</p>
-                </div>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-start space-x-3 transition-colors hover:bg-white/10">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400">
-                  <Lock className="h-5 w-5" />
-                </div>
-                <div>
-                  <h4 className="text-[11px] font-bold tracking-wider text-slate-300 font-mono uppercase">No Highway Extort</h4>
-                  <span className="text-[8px] text-emerald-400 font-mono font-bold uppercase block mt-0.5">Written Quote Lock</span>
-                  <p className="text-[10px] text-slate-400 mt-1 leading-normal font-medium">Upfront transparent flat rates matching digital estimates to block highway extortion.</p>
-                </div>
-              </div>
-
+              {[
+                { icon: <Award className="h-5 w-5" />, title: 'ISO 9001:2015', badge: 'Approved System', badgeColor: 'text-orange-500', iconBg: 'bg-orange-500/15 text-orange-400', desc: 'Strict administrative rules on inventory checks and high-durability wrapping layers.' },
+                { icon: <ShieldCheck className="h-5 w-5" />, title: 'Full Cargo Care', badge: 'Vetted Supervisors', badgeColor: 'text-blue-400', iconBg: 'bg-blue-500/15 text-blue-400', desc: 'Full background-checks executed on all packing staff and dedicated truck drivers.' },
+                { icon: <Lock className="h-5 w-5" />, title: 'No Highway Extort', badge: 'Written Quote Lock', badgeColor: 'text-emerald-400', iconBg: 'bg-emerald-500/15 text-emerald-400', desc: 'Upfront transparent flat rates matching digital estimates to block highway extortion.' },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: idx * 0.15, duration: 0.5 }}
+                  className="group bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5 hover:bg-white/[0.06] hover:border-white/[0.1] transition-all duration-300"
+                >
+                  <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${item.iconBg} mb-4 group-hover:scale-110 transition-transform`}>
+                    {item.icon}
+                  </div>
+                  <h4 className="text-[12px] font-bold tracking-wider text-white font-mono uppercase">{item.title}</h4>
+                  <span className={`text-[9px] ${item.badgeColor} font-mono font-bold uppercase block mt-1`}>{item.badge}</span>
+                  <p className="text-[11px] text-slate-400 mt-2 leading-normal font-medium">{item.desc}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
@@ -301,21 +360,29 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
 
       {/* 3. VERIFIED METRICS OVERVIEW */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Company statistics">
-        <div className="bg-slate-50 border border-slate-100 rounded-2xl sm:rounded-3xl p-5 sm:p-10 relative overflow-hidden">
-          <div className="absolute right-0 top-0 w-80 h-80 bg-slate-100 rounded-full blur-2xl pointer-events-none" />
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 divide-y lg:divide-y-0 lg:divide-x divide-slate-200/60 relative z-10">
+        <div className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-10 relative overflow-hidden shadow-xl shadow-slate-900/[0.03]">
+          <div className="absolute -right-20 -top-20 w-80 h-80 bg-blue-50 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -left-10 -bottom-10 w-60 h-60 bg-orange-50 rounded-full blur-3xl pointer-events-none" />
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative z-10">
             {stats.map((s, idx) => {
               const Icon = s.icon;
               return (
-                <div key={idx} className={`pt-6 lg:pt-0 ${idx > 0 ? 'lg:pl-8' : ''} flex items-center space-x-4`}>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-slate-900 shadow-sm border border-slate-100">
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ delay: idx * 0.1, duration: 0.5 }}
+                  className="group text-center sm:text-left flex flex-col sm:flex-row items-center sm:items-start space-y-2 sm:space-y-0 sm:space-x-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors"
+                >
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 shadow-sm border border-slate-200/50 group-hover:shadow-md transition-all">
                     <Icon className={`h-6 w-6 ${s.color}`} />
                   </div>
-                  <div>
-                    <div className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight font-poppins">{s.value}</div>
-                    <div className="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider font-mono mt-1">{s.label}</div>
+                  <div className="text-center sm:text-left">
+                    <div className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight font-poppins leading-none">{s.value}</div>
+                    <div className="text-[10px] sm:text-[11px] text-slate-500 font-bold uppercase tracking-wider font-mono mt-1.5">{s.label}</div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
