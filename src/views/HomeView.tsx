@@ -392,71 +392,77 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
       {/* 4. PREMIUM COMPREHENSIVE SERVICES AREA */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <span className="text-xs font-bold font-mono tracking-widest text-blue-600 uppercase bg-blue-50 px-3 py-1 rounded-full">
-            ● Enterprise Logistics Divisions
+          <span className="inline-flex items-center space-x-2 text-xs font-bold font-mono tracking-widest text-blue-600 uppercase bg-blue-50 border border-blue-100 px-4 py-1.5 rounded-full">
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
+            <span>Enterprise Logistics Divisions</span>
           </span>
           <h2 className="font-poppins text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
             High-Performance Shifting Catalog
           </h2>
-          <p className="text-sm sm:text-base text-slate-500 font-sans font-medium">
+          <p className="text-sm sm:text-base text-slate-500 font-sans font-medium max-w-2xl mx-auto">
             Deploying vetted moving squads, heavy duty multi-layer wrapping rolls, and custom transit containment units nationwide.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
           {[
             { 
-              num: '01', 
-              name: 'Household Relocation', 
+              num: '01', name: 'Household Relocation', 
               desc: 'Custom bubble-wrap lamination, wardrobe boxes, appliance corner caps, and bed disassembly setting.',
               features: ['Glass/LED Specialized Crates', 'Free Pre-assembly', 'Complete Cabinet Setup'],
-              icon: '🏠' 
+              icon: '🏠', gradient: 'from-blue-600 to-blue-700' 
             },
             { 
-              num: '02', 
-              name: 'Office Relocation', 
+              num: '02', name: 'Office Relocation', 
               desc: 'Server stack containment, physical document sorting, IT setups, and synchronized weekend transfers.',
               features: ['CCTV Secured Container Run', 'Data Server Protection', 'Zero-Downtime Blueprint'],
-              icon: '🏢' 
+              icon: '🏢', gradient: 'from-orange-500 to-orange-600' 
             },
             { 
-              num: '03', 
-              name: 'Vehicle Carrier Transit', 
+              num: '03', name: 'Vehicle Carrier Transit', 
               desc: 'Hydraulic closed-deck car container fleets and specialized foam bike-mount safety carriers.',
               features: ['No-Friction Rim Straps', 'Guaranteed Enclosed Truck', 'Zero-Ramp Scrapes'],
-              icon: '🚚' 
+              icon: '🚚', gradient: 'from-emerald-600 to-emerald-700' 
             },
             { 
-              num: '04', 
-              name: 'Secure Storage Vaults', 
+              num: '04', name: 'Secure Storage Vaults', 
               desc: 'Climatized, dry storage warehouse facilities with round-the-clock manual guard duty & CCTV.',
               features: ['Moisture-Free Flooring', '24/7 Guard Monitoring', 'Flexible Weekly Leases'],
-              icon: '🔑' 
+              icon: '🔑', gradient: 'from-purple-600 to-purple-700' 
             }
           ].map((serv, idx) => (
-            <div 
-              key={idx} 
-              className="bg-white border border-slate-200/80 p-6 rounded-3xl shadow-3xs hover:border-blue-600 hover:shadow-2xl transition-all duration-300 group flex flex-col justify-between"
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: idx * 0.12, duration: 0.5 }}
+              className="group relative bg-white border border-slate-200/80 p-6 rounded-3xl shadow-sm hover:shadow-2xl hover:shadow-blue-600/[0.06] hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between overflow-hidden"
             >
+              {/* Gradient top accent */}
+              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${serv.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+              
               <div>
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl">{serv.icon}</span>
-                  <span className="font-mono text-2xl font-black text-slate-200 tracking-tight">
+                <div className="flex items-center justify-between mb-5">
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${serv.gradient} text-2xl shadow-lg shadow-slate-900/10 group-hover:scale-110 transition-transform duration-300`}>
+                    {serv.icon}
+                  </div>
+                  <span className="font-mono text-3xl font-black text-slate-100 group-hover:text-slate-200 transition-colors">
                     {serv.num}
                   </span>
                 </div>
                 
-                <h3 className="font-poppins text-lg font-bold text-slate-950 mt-5 group-hover:text-blue-600 transition-colors">
+                <h3 className="font-poppins text-lg font-bold text-slate-950 group-hover:text-blue-600 transition-colors duration-300">
                   {serv.name}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-500 font-sans mt-2.5 leading-relaxed font-medium">
                   {serv.desc}
                 </p>
 
-                <ul className="mt-4 pt-4 border-t border-slate-100 space-y-1.5 text-[11px] font-bold text-slate-600 font-sans">
+                <ul className="mt-4 pt-4 border-t border-slate-100 space-y-2 text-[11px] font-bold text-slate-600 font-sans">
                   {serv.features.map((f, fIdx) => (
-                    <li key={fIdx} className="flex items-center space-x-1.5">
-                      <span className="text-blue-600 text-xs font-black">✔</span>
+                    <li key={fIdx} className="flex items-center space-x-2">
+                      <span className={`flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br ${serv.gradient} text-white text-[8px] font-black`}>✔</span>
                       <span>{f}</span>
                     </li>
                   ))}
@@ -465,12 +471,12 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
 
               <button 
                 onClick={() => onNavigate('services')}
-                className="group flex items-center space-x-1.5 text-xs text-blue-600 hover:text-blue-700 font-bold font-sans mt-6 pt-3.5 border-t border-slate-100 w-full text-left"
+                className="group/btn flex items-center space-x-1.5 text-xs text-blue-600 hover:text-blue-700 font-bold font-sans mt-6 pt-4 border-t border-slate-100 w-full text-left"
               >
                 <span>Read detailed process</span>
-                <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                <ArrowRight className="h-3 w-3 transition-transform group-hover/btn:translate-x-1" />
               </button>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -536,9 +542,10 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
 
       {/* 6. ADVANCED STEP TIMELINE */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-bold font-mono tracking-widest text-blue-600 uppercase bg-blue-50 px-3 py-1 rounded-full">
-            ✔ Seamless Process
+        <div className="text-center max-w-2xl mx-auto space-y-4">
+          <span className="inline-flex items-center space-x-2 text-xs font-bold font-mono tracking-widest text-emerald-600 uppercase bg-emerald-50 border border-emerald-100 px-4 py-1.5 rounded-full">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+            <span>Seamless Process</span>
           </span>
           <h2 className="font-poppins text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
             Our 5-Step Operational Flow
@@ -548,20 +555,27 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-12 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-12 relative">
+          {/* Connecting line on desktop */}
+          <div className="hidden lg:block absolute top-16 left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-blue-200 via-blue-300 to-emerald-200" />
           {processes.map((p, idx) => (
-            <div 
-              key={idx} 
-              className="bg-white p-6 rounded-2xl border border-slate-250-0 border-slate-200 shadow-3xs relative pt-14 hover:border-blue-600 transition-colors"
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              className="group relative bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:shadow-blue-600/[0.05] hover:-translate-y-1 transition-all duration-300"
             >
-              <span className="absolute left-6 top-4 font-mono text-5xl font-black text-blue-600/5 select-none">
+              {/* Step number circle */}
+              <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-blue-700 text-white font-mono text-sm font-black mb-4 shadow-lg shadow-blue-600/20 group-hover:scale-110 transition-transform">
                 {p.step}
-              </span>
-              <h4 className="font-poppins text-base font-bold text-slate-950">{p.title}</h4>
-              <p className="text-xs sm:text-sm text-slate-500 font-sans mt-3 leading-relaxed font-medium">
+              </div>
+              <h4 className="font-poppins text-sm font-bold text-slate-950">{p.title}</h4>
+              <p className="text-xs text-slate-500 font-sans mt-2.5 leading-relaxed font-medium">
                 {p.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
