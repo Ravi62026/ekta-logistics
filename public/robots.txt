@@ -1,0 +1,6 @@
+# EKTA LOGISTICS Packers & Movers Robots.txt file
+User-agent: *
+Allow: /
+
+# Sitemap link configuration
+Sitemap: https://ektalogistics.in/sitemap.xml
