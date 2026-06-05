@@ -661,20 +661,21 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
         <div className="absolute inset-0 bg-dot-pattern opacity-5" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
-            <span className="text-xs font-bold font-mono tracking-widest text-orange-500 bg-orange-50 px-3 py-1 rounded-full border border-orange-200">
-              PAN INDIA EXPRESS LINES
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
+            <span className="inline-flex items-center space-x-2 text-xs font-bold font-mono tracking-widest text-orange-500 bg-orange-50 border border-orange-100 px-4 py-1.5 rounded-full">
+              <span className="h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse" />
+              <span>Pan India Express Lines</span>
             </span>
             <h2 className="font-poppins text-3xl sm:text-4xl font-black text-slate-950 tracking-tight text-center">
               Shifting from Gurgaon to Other Cities
             </h2>
-            <p className="text-sm sm:text-base text-slate-500 font-sans font-medium text-center">
+            <p className="text-sm sm:text-base text-slate-500 font-sans font-medium text-center max-w-2xl mx-auto">
               We operate daily customized container dispatches leaving Gurgaon to all famous corporate cities. No price/time variables—direct flat quotes.
             </p>
           </div>
 
           {/* Clean 3-column rows of famous Indian cities */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
               { destination: 'Mumbai', state: 'Maharashtra', dist: '1,420 km', label: 'Financial Capital', slug: 'mumbai', type: 'city-seo' },
               { destination: 'Bangalore', state: 'Karnataka', dist: '2,150 km', label: 'Tech Innovation Hub', slug: 'bangalore', type: 'city-seo' },
@@ -686,36 +687,40 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
               { destination: 'Jaipur', state: 'Rajasthan', dist: '240 km', label: 'Pink City Expressway', slug: 'jaipur', type: 'scroll' },
               { destination: 'Lucknow', state: 'Uttar Pradesh', dist: '510 km', label: 'Avadh Heritage Highway', slug: 'lucknow', type: 'scroll' }
             ].map((city, idx) => (
-              <div 
-                key={idx} 
-                className="bg-white border border-slate-200 hover:border-blue-600 rounded-3xl p-6 sm:p-7 shadow-3xs hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ delay: idx * 0.06, duration: 0.4 }}
+                className="group bg-white border border-slate-200 hover:border-blue-500/40 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-xl hover:shadow-blue-600/[0.06] transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold font-mono text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-lg uppercase">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[10px] font-bold font-mono text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg uppercase border border-blue-100">
                       {city.label}
                     </span>
-                    <span className="flex items-center space-x-1 text-[11px] text-emerald-600 font-mono font-bold">
+                    <span className="flex items-center space-x-1.5 text-[10px] text-emerald-600 font-mono font-bold bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-100">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      <span>Dedicated Fleet</span>
+                      <span>Fleet Active</span>
                     </span>
                   </div>
                   
-                  <h3 className="font-poppins text-lg font-black text-slate-950 mt-4 flex items-center justify-between">
+                  <h3 className="font-poppins text-lg font-black text-slate-950 flex items-center justify-between">
                     <span>Gurgaon ➔ {city.destination}</span>
-                    <ArrowRight className="h-4.5 w-4.5 text-slate-300 group-hover:text-blue-600 transition-colors transform group-hover:translate-x-1" />
+                    <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
                   </h3>
-                  <span className="text-slate-400 text-xs font-semibold block -mt-1 font-sans">({city.state})</span>
+                  <span className="text-slate-400 text-xs font-semibold block mt-0.5 font-sans">({city.state})</span>
                   
-                  <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm">
-                    <span className="text-slate-500 font-medium font-sans">Transit Distance:</span>
-                    <strong className="text-slate-800 font-mono font-bold bg-slate-50 border border-slate-150 px-3 py-1 rounded-xl">
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span className="text-slate-500 font-medium font-sans">Highway Distance</span>
+                    <strong className="text-slate-800 font-mono font-bold bg-slate-50 border border-slate-200/60 px-3 py-1 rounded-lg">
                       {city.dist}
                     </strong>
                   </div>
                 </div>
 
-                <div className="mt-6">
+                <div className="mt-5">
                   <button
                     type="button"
                     onClick={() => {
@@ -731,12 +736,13 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
                         }, 400);
                       }
                     }}
-                    className="w-full flex items-center justify-center py-3 rounded-2xl border-2 border-slate-100 bg-[#FFFFFF] hover:bg-blue-600 hover:border-blue-600 hover:text-white text-slate-800 text-[11px] font-extrabold font-poppins uppercase tracking-wider transition-all shadow-xs cursor-pointer"
+                    className="w-full flex items-center justify-center space-x-2 py-3 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-[11px] font-extrabold font-poppins uppercase tracking-wider transition-all shadow-sm cursor-pointer"
                   >
                     <span>Request Shifting Plan</span>
+                    <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </button>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
