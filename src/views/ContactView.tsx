@@ -157,18 +157,41 @@ export default function ContactView({ onLeadSubmit }: ContactViewProps) {
             </div>
           </div>
 
-          {/* Simple Vector Map representation block */}
-          <div className="bg-slate-100 rounded-2xl border border-slate-200 p-4 space-y-3">
-            <div className="flex justify-between items-center text-xs border-b border-slate-200 pb-2">
-              <span className="font-mono font-bold text-slate-800">GURUGRAM GEOLOCATION DEPT</span>
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-ping" />
+          {/* Google Maps Embed + Location Card */}
+          <div className="bg-slate-100 rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="flex justify-between items-center text-xs px-4 py-2.5 border-b border-slate-200 bg-white">
+              <span className="font-mono font-bold text-slate-800 flex items-center space-x-1.5">
+                <MapPin className="h-3.5 w-3.5 text-blue-600" />
+                <span>GURUGRAM HEADQUARTERS</span>
+              </span>
+              <span className="flex items-center space-x-1 text-[10px] text-emerald-600 font-mono font-bold">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
+                <span>OPEN 24/7</span>
+              </span>
             </div>
             
-            <div className="bg-slate-200 border border-slate-300 rounded-xl p-8 text-center text-xs text-slate-500 font-mono space-y-2 relative overflow-hidden flex flex-col justify-center items-center">
-              <div className="absolute top-1 right-2 text-[8px] text-slate-400">LAT: 28.4595 | LNG: 77.0266</div>
-              <MapPin className="h-10 w-10 text-blue-700 shrink-0 animate-bounce" />
-              <strong className="text-slate-900 font-bold block">Maruti Parking Hub</strong>
-              <span className="text-[10px] block leading-normal px-4">Direct express highway routes to Delhi border checkpoint inside 8 minutes.</span>
+            {/* Google Maps iframe */}
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.9!2d77.0266!3d28.4595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMaruti+Truck+Parking+Gurugram!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                className="absolute inset-0 w-full h-full border-0"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="EKTA LOGISTICS headquarters location on Google Maps"
+              />
+            </div>
+
+            <div className="p-3 bg-white border-t border-slate-200">
+              <a
+                href="https://www.google.com/maps/search/EKTA+LOGISTICS+PACKERS+MOVERS+Maruti+Truck+Parking+Gurugram"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center space-x-2 w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition-colors uppercase tracking-wider"
+              >
+                <MapPin className="h-4 w-4" />
+                <span>Get Directions on Google Maps</span>
+              </a>
             </div>
           </div>
 

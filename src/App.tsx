@@ -110,23 +110,51 @@ export default function App() {
     
     const absoluteUrl = `https://ektalogistics.in${relativeUrl === '/' ? '' : relativeUrl}`;
 
-    // Update document title dynamically based on navigation view
+    // Dynamic title + description per view
     let titleStr = "EKTA LOGISTICS PACKERS & MOVERS | Trusted Shifting Services India";
-    if (currentView === 'about') titleStr = "About Us - EKTA LOGISTICS Packers & Movers";
-    if (currentView === 'services') titleStr = "Our Shifting Services - EKTA LOGISTICS";
-    if (currentView === 'gallery') titleStr = "Cargo & Shifting Gallery - EKTA LOGISTICS";
-    if (currentView === 'contact') titleStr = "Contact Us & Get Free Shifting Quotes - EKTA LOGISTICS";
+    let descStr = "Premium packers & movers in Gurugram. Household shifting, office relocation, car transport across India. IBA-approved, 4.9★ rated. Call +91 96904 99137.";
+
+    if (currentView === 'about') {
+      titleStr = "About Us - EKTA LOGISTICS Packers & Movers";
+      descStr = "Learn about EKTA LOGISTICS — founded by Irshad Khan in Gurugram. ISO certified, IBA-approved moving company with 10,000+ successful relocations across India.";
+    }
+    if (currentView === 'services') {
+      titleStr = "Our Shifting Services - EKTA LOGISTICS";
+      descStr = "Household shifting, office relocation, car & bike carrier, and secure storage vaults. Multi-layer packing with flat-rate pricing across India.";
+    }
+    if (currentView === 'gallery') {
+      titleStr = "Cargo & Shifting Gallery - EKTA LOGISTICS";
+      descStr = "View real photos of our packing work, closed container fleet, office cabin, and GST credentials at Gurugram dispatch yard.";
+    }
+    if (currentView === 'contact') {
+      titleStr = "Contact Us & Get Free Shifting Quotes - EKTA LOGISTICS";
+      descStr = "Contact EKTA LOGISTICS Gurugram HQ for free home survey. Call +91 96904 99137 or WhatsApp for instant shifting quotes.";
+    }
     if (currentView === 'city-seo') {
       const cityName = activeCitySlug.charAt(0).toUpperCase() + activeCitySlug.slice(1);
       titleStr = `Reliable Packers and Movers in ${cityName} | EKTA LOGISTICS`;
+      descStr = `Top-rated packers and movers in ${cityName}. Safe home shifting, office relocation & vehicle transport. Get free quote from EKTA LOGISTICS.`;
     }
     if (currentView === 'route-seo') {
       const routeFormatted = activeRouteSlug.split('-to-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' to ');
       titleStr = `Professional Packers and Movers ${routeFormatted} | EKTA LOGISTICS`;
+      descStr = `Safe and secure packers & movers from ${routeFormatted}. Dedicated container trucks, transit insurance & flat rates with EKTA LOGISTICS.`;
     }
+
     document.title = titleStr;
 
-    // Secure canonical head element update dynamically
+    // Helper to update meta tags
+    const setMeta = (selector: string, attr: string, value: string, createAttr?: string) => {
+      let el: HTMLMetaElement | null = document.querySelector(selector);
+      if (!el) {
+        el = document.createElement('meta');
+        if (createAttr) el.setAttribute(createAttr.split('=')[0], createAttr.split('=')[1]);
+        document.head.appendChild(el);
+      }
+      el.setAttribute(attr, value);
+    };
+
+    // Canonical
     let link: HTMLLinkElement | null = document.querySelector("link[rel='canonical']");
     if (!link) {
       link = document.createElement('link');
@@ -135,22 +163,17 @@ export default function App() {
     }
     link.setAttribute('href', absoluteUrl);
 
-    // Secure Open Graph standard metadata
-    let ogUrl: HTMLMetaElement | null = document.querySelector("meta[property='og:url']");
-    if (!ogUrl) {
-      ogUrl = document.createElement('meta');
-      ogUrl.setAttribute('property', 'og:url');
-      document.head.appendChild(ogUrl);
-    }
-    ogUrl.setAttribute('content', absoluteUrl);
+    // Description
+    setMeta("meta[name='description']", 'content', descStr);
 
-    let ogTitle: HTMLMetaElement | null = document.querySelector("meta[property='og:title']");
-    if (!ogTitle) {
-      ogTitle = document.createElement('meta');
-      ogTitle.setAttribute('property', 'og:title');
-      document.head.appendChild(ogTitle);
-    }
-    ogTitle.setAttribute('content', titleStr);
+    // Open Graph
+    setMeta("meta[property='og:url']", 'content', absoluteUrl, 'property=og:url');
+    setMeta("meta[property='og:title']", 'content', titleStr, 'property=og:title');
+    setMeta("meta[property='og:description']", 'content', descStr, 'property=og:description');
+
+    // Twitter
+    setMeta("meta[name='twitter:title']", 'content', titleStr);
+    setMeta("meta[name='twitter:description']", 'content', descStr);
 
     triggerLog(`GA4: [PageView] url="${relativeUrl}" title="${titleStr}"`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -209,16 +232,19 @@ export default function App() {
 
   // Inject Schemas according to active view
   const renderJSONLDSchemas = () => {
-    // 1. LocalBusiness Headquarters Schema standard
+    // 1. LocalBusiness / MovingCompany Schema with Google Business Profile alignment
     const hqSchema = {
       "@context": "https://schema.org",
       "@type": "MovingCompany",
       "name": "EKTA LOGISTICS PACKERS & MOVERS",
+      "alternateName": "Ekta Logistics",
       "image": "https://ektalogistics.in/assets/ekta-logistics-headquarters-signboard.jpg",
       "@id": "https://ektalogistics.in/#corporation",
       "url": "https://ektalogistics.in",
       "telephone": "+919690499137",
+      "email": "ektalogistics0@gmail.com",
       "priceRange": "₹₹",
+      "description": "Premium packers and movers in Gurugram offering household shifting, office relocation, car & bike transport, and secure storage across India. IBA-approved, ISO 9001:2015 certified.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Shop No. 14, Cartepuri Road, Maruti Truck Parking, Near Maruti Udyog Limited",
@@ -232,15 +258,80 @@ export default function App() {
         "latitude": 28.4595,
         "longitude": 77.0266
       },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "00:00",
-        "closes": "23:59"
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Irshad Khan",
+        "jobTitle": "Founder & Director"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "187"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "author": { "@type": "Person", "name": "Rohan Malhotra" },
+          "reviewBody": "Extremely professional shifting experience! Relocated our 3 BHK villa from Gurgaon DLF to Bangalore with zero hidden costs."
+        },
+        {
+          "@type": "Review",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "author": { "@type": "Person", "name": "Captain Amit Verma" },
+          "reviewBody": "Ekta Logistics packed everything with extreme care, ensuring direct vehicle loading under my supervision. Direct transit, safe arrival."
+        }
+      ],
+      "areaServed": [
+        { "@type": "City", "name": "Gurugram" },
+        { "@type": "City", "name": "Delhi" },
+        { "@type": "City", "name": "Mumbai" },
+        { "@type": "City", "name": "Bangalore" },
+        { "@type": "City", "name": "Hyderabad" },
+        { "@type": "City", "name": "Pune" },
+        { "@type": "City", "name": "Chennai" },
+        { "@type": "City", "name": "Kolkata" },
+        { "@type": "State", "name": "India" }
+      ],
+      "sameAs": [
+        "https://www.google.com/maps/place/EKTA+LOGISTICS+PACKERS+%26+MOVERS"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Shifting Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Household Shifting" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Office Relocation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Car & Bike Carrier" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Secure Storage Vaults" } }
+        ]
       }
     };
 
-    return JSON.stringify(hqSchema, null, 2);
+    // 2. WebSite schema for sitelinks search box
+    const websiteSchema = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "EKTA LOGISTICS PACKERS & MOVERS",
+      "url": "https://ektalogistics.in",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://ektalogistics.in/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    };
+
+    return JSON.stringify([hqSchema, websiteSchema], null, 2);
   };
 
   return (

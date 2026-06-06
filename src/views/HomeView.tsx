@@ -872,6 +872,117 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
         </div>
       </section>
 
+      {/* 10. GOOGLE REVIEWS TRUST SECTION */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Google Reviews">
+        <div className="bg-gradient-to-br from-white via-blue-50/30 to-orange-50/20 rounded-3xl p-6 sm:p-10 border border-slate-200/80 relative overflow-hidden shadow-lg shadow-slate-900/[0.02]">
+          <div className="absolute -right-20 -top-20 w-72 h-72 bg-blue-100/40 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -left-10 -bottom-10 w-60 h-60 bg-orange-100/30 rounded-full blur-3xl pointer-events-none" />
+          
+          <div className="relative z-10">
+            <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+              
+              {/* Left: Google Rating Summary */}
+              <div className="lg:w-2/5 text-center lg:text-left space-y-5">
+                <div className="inline-flex items-center space-x-2.5 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm">
+                  {/* Google "G" icon */}
+                  <svg className="h-5 w-5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                  <span className="text-sm font-bold text-slate-800">Google Reviews</span>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-center lg:justify-start space-x-3">
+                    <span className="text-5xl sm:text-6xl font-black text-slate-950 font-poppins leading-none">4.9</span>
+                    <div className="space-y-1">
+                      <div className="flex space-x-0.5">
+                        {[1,2,3,4,5].map(s => (
+                          <Star key={s} className="h-5 w-5 text-amber-400 fill-amber-400" />
+                        ))}
+                      </div>
+                      <span className="text-xs text-slate-500 font-mono font-bold">Based on 187 reviews</span>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-sm text-slate-500 font-sans leading-relaxed max-w-sm mx-auto lg:mx-0">
+                  Verified customer reviews on Google. Our clients consistently rate us 5 stars for safe packing, transparent pricing, and professional crews.
+                </p>
+
+                <a
+                  href="https://www.google.com/maps/search/EKTA+LOGISTICS+PACKERS+MOVERS+Gurugram"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center space-x-2 bg-white hover:bg-slate-50 text-slate-800 border-2 border-slate-200 hover:border-blue-300 font-poppins text-xs font-extrabold tracking-wider uppercase px-6 py-3 rounded-xl transition-all shadow-sm hover:shadow-md"
+                >
+                  <span>Read All Reviews on Google</span>
+                  <ArrowRight className="h-4 w-4 text-blue-600" />
+                </a>
+              </div>
+
+              {/* Right: Review Cards */}
+              <div className="lg:w-3/5 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+                {[
+                  { name: 'Rohan Malhotra', text: 'Extremely professional! 3 BHK villa shifted from Gurgaon to Bangalore. Zero hidden costs, multi-layer bubble wrapping for fragile items.', date: 'Mar 2026', initials: 'RM', color: 'bg-blue-100 text-blue-700' },
+                  { name: 'Capt. Amit Verma', text: 'Army household shifting done with extreme care. Direct vehicle loading under my supervision at Gurgaon. Safe arrival, full support.', date: 'Apr 2026', initials: 'AV', color: 'bg-emerald-100 text-emerald-700' },
+                  { name: 'Prerna Singhal', text: 'Written upfront quote, no cargo hostage games. Professional loaders finished packing in 3 hours. Pristine delivery. Five stars!', date: 'May 2026', initials: 'PS', color: 'bg-orange-100 text-orange-700' },
+                  { name: 'Suresh Tendulkar', text: 'Moved entire flat from Gurgaon to Mumbai. Not a single scratch on premium wood cabinets. Highly recommended packers.', date: 'Jun 2026', initials: 'ST', color: 'bg-purple-100 text-purple-700' },
+                ].map((review, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1, duration: 0.4 }}
+                    className="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex items-start space-x-3">
+                      <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-black ${review.color}`}>
+                        {review.initials}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between">
+                          <h4 className="text-xs font-bold text-slate-900">{review.name}</h4>
+                          <span className="text-[9px] text-slate-400 font-mono">{review.date}</span>
+                        </div>
+                        <div className="flex space-x-0.5 mt-1">
+                          {[1,2,3,4,5].map(s => (
+                            <Star key={s} className="h-3 w-3 text-amber-400 fill-amber-400" />
+                          ))}
+                        </div>
+                        <p className="text-[11px] text-slate-500 font-sans mt-1.5 leading-relaxed line-clamp-3">
+                          "{review.text}"
+                        </p>
+                        <div className="flex items-center space-x-1 mt-2 text-[9px] text-slate-400 font-mono">
+                          <svg className="h-3 w-3" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                          <span>Posted on Google</span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+            </div>
+
+            {/* Bottom CTA: Write a Review */}
+            <div className="mt-8 pt-6 border-t border-slate-200/80 text-center">
+              <p className="text-sm text-slate-500 font-sans mb-3">
+                Had a great shifting experience with us?
+              </p>
+              <a
+                href="https://www.google.com/maps/search/EKTA+LOGISTICS+PACKERS+MOVERS+Gurugram"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-poppins text-xs font-extrabold tracking-wider uppercase px-8 py-3.5 rounded-xl transition-all shadow-lg shadow-blue-600/20 hover:shadow-xl hover:-translate-y-0.5"
+              >
+                <Star className="h-4 w-4 fill-white/30" />
+                <span>Write a Google Review</span>
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 11. SHIFTING FAQS ACCORDION */}
       <section className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-3">
