@@ -173,7 +173,7 @@ export default function ContactView({ onLeadSubmit }: ContactViewProps) {
             {/* Google Maps iframe */}
             <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.9!2d77.0266!3d28.4595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMaruti+Truck+Parking+Gurugram!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.9!2d77.055183!3d28.497585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sEKTA+LOGISTICS+PACKERS+%26+MOVERS!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                 className="absolute inset-0 w-full h-full border-0"
                 allowFullScreen
                 loading="lazy"
@@ -184,7 +184,7 @@ export default function ContactView({ onLeadSubmit }: ContactViewProps) {
 
             <div className="p-3 bg-white border-t border-slate-200">
               <a
-                href="https://www.google.com/maps/search/EKTA+LOGISTICS+PACKERS+MOVERS+Maruti+Truck+Parking+Gurugram"
+                href="https://maps.google.com/?q=28.497585,77.055183"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center space-x-2 w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition-colors uppercase tracking-wider"

@@ -19,6 +19,7 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [lightboxCustomType, setLightboxCustomType] = useState<'actual-signboard' | 'actual-cabin' | 'actual-yard' | null>(null);
+  const heroFormRef = React.useRef<HTMLDivElement>(null);
   
   // Contact Form State
   const [contactName, setContactName] = useState('');
@@ -265,7 +266,7 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8, duration: 0.5 }}
                   onClick={() => {
-                    window.scrollTo({ top: 380, behavior: 'smooth' });
+                    heroFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }}
                   className="group relative flex items-center space-x-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-poppins text-xs font-extrabold tracking-wider uppercase px-8 py-4 rounded-2xl transition-all shadow-xl shadow-blue-600/25 hover:shadow-2xl hover:shadow-blue-600/30 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                 >
@@ -299,8 +300,8 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
               {/* Premium glow behind form */}
               <div className="absolute -inset-3 rounded-[40px] bg-gradient-to-br from-blue-600/15 via-orange-500/10 to-blue-700/15 blur-2xl opacity-60" />
               <div className="absolute -inset-1 rounded-[32px] bg-gradient-to-br from-blue-600/5 to-orange-500/5" />
-              <div className="relative">
-                <QuoteForm onLeadSubmit={onLeadSubmit} />
+              <div ref={heroFormRef} className="relative">
+                 <QuoteForm onLeadSubmit={onLeadSubmit} />
               </div>
             </motion.div>
 
@@ -494,7 +495,7 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
               <h2 className="font-poppins text-3xl sm:text-4xl font-black text-slate-950 tracking-tight leading-tight">
                 No intermediate brokers, No road extortion.
               </h2>
-              <p className="text-sm sm:text-base text-slate-605-0 text-slate-600 font-sans leading-relaxed font-medium">
+                <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed font-medium">
                 The Indian local packers and movers sector is riddled with brokers who attract users with low phone pricing only to hold cargo hostage for extra tolls midway. 
               </p>
               <p className="text-sm text-slate-500 font-sans leading-relaxed">
@@ -523,7 +524,7 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
                       <div className="h-10 w-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
                         <Icon className="h-5 w-5" />
                       </div>
-                      <span className="text-[9px] font-mono font-bold bg-slate-150-1 text-blue-600 bg-blue-50/50 px-2.5 py-0.5 rounded-full uppercase">
+                      <span className="text-[9px] font-mono font-bold bg-slate-100 text-blue-600 bg-blue-50/50 px-2.5 py-0.5 rounded-full uppercase">
                         {h.badge}
                       </span>
                     </div>
@@ -729,11 +730,7 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
                       } else if (city.type === 'route-seo') {
                         onNavigate('route-seo', city.slug);
                       } else {
-                        window.scrollTo({ top: 350, behavior: 'smooth' });
-                        setTimeout(() => {
-                          const destInput = document.querySelector('input[placeholder*="Hitech City"]');
-                          if (destInput) (destInput as HTMLInputElement).focus();
-                        }, 400);
+                        heroFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
                     }}
                     className="w-full flex items-center justify-center space-x-2 py-3 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-[11px] font-extrabold font-poppins uppercase tracking-wider transition-all shadow-sm cursor-pointer"
@@ -747,7 +744,7 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
           </div>
 
           {/* Sub metropolitan badge indices containing other famous cities of India */}
-          <div className="mt-10 bg-white border border-slate-205-0 border-slate-200 p-6 sm:p-8 rounded-3xl relative overflow-hidden shadow-sm">
+          <div className="mt-10 bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl relative overflow-hidden shadow-sm">
             <div className="absolute right-0 bottom-0 w-80 h-80 bg-[radial-gradient(ellipse_at_bottom_right,rgba(37,99,235,0.01),transparent_50%)] pointer-events-none" />
             <div className="relative z-10 space-y-4">
               <h4 className="font-poppins text-xs font-black uppercase tracking-widest text-slate-900 border-b border-slate-100 pb-3.5 flex items-center justify-between">
@@ -770,16 +767,9 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
                     key={i}
                     type="button"
                     onClick={() => {
-                      window.scrollTo({ top: 350, behavior: 'smooth' });
-                      setTimeout(() => {
-                        const destInput = document.querySelector('input[placeholder*="Hitech City"]');
-                        if (destInput) {
-                          (destInput as HTMLInputElement).value = name;
-                          (destInput as HTMLInputElement).focus();
-                        }
-                      }, 400);
+                      heroFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }}
-                    className="px-3 py-1.5 text-[10.5px] font-bold font-sans bg-slate-50 hover:bg-orange-50 border border-slate-150-0 border-slate-200 rounded-xl hover:border-orange-500/20 text-slate-650 hover:text-orange-600 transition-all cursor-pointer"
+                    className="px-3 py-1.5 text-[10.5px] font-bold font-sans bg-slate-50 hover:bg-orange-50 border border-slate-200 rounded-xl hover:border-orange-500/20 text-slate-600 hover:text-orange-600 transition-all cursor-pointer"
                   >
                     <span>Gurgaon ➔ {name}</span>
                   </button>
@@ -1003,7 +993,7 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
             return (
               <div 
                 key={idx} 
-                className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-slate-350 transition-all duration-300"
+                className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-slate-300 transition-all duration-300"
               >
                 <button
                   type="button"
@@ -1046,7 +1036,7 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
             
             {/* Left Contact Side info panels */}
             <div className="lg:col-span-5 space-y-6">
-              <span className="text-xs font-bold font-mono tracking-widest text-blue-600 bg-blue-105-0 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+              <span className="text-xs font-bold font-mono tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                 ⚡ Direct Shifting Hotline
               </span>
               <h2 className="font-poppins text-3xl sm:text-4xl font-black text-slate-950 tracking-tight leading-tight">
@@ -1059,7 +1049,7 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
               <div className="space-y-4 pt-2 font-mono text-slate-800 text-xs">
                 
                 <div className="flex items-start space-x-3.5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-100 text-orange-650">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-100 text-orange-600">
                     <Phone className="h-5 w-5" />
                   </div>
                   <div>
@@ -1069,7 +1059,7 @@ export default function HomeView({ onLeadSubmit, onNavigate }: HomeViewProps) {
                 </div>
 
                 <div className="flex items-start space-x-3.5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-750">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
                     <Mail className="h-5 w-5" />
                   </div>
                   <div>

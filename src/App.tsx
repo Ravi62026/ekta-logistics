@@ -255,8 +255,8 @@ export default function App() {
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 28.4595,
-        "longitude": 77.0266
+        "latitude": 28.497585,
+        "longitude": 77.055183
       },
       "openingHoursSpecification": [
         {

@@ -311,7 +311,7 @@ export default function Header({ currentView, onNavigate, leadCount }: HeaderPro
                 className="group flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-[11px] font-bold px-4 py-2.5 rounded-xl transition-all shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-600/20 hover:-translate-y-0.5"
               >
                 <Phone className="h-4 w-4 shrink-0 fill-white/20 group-hover:scale-110 transition-transform" />
-                <span className="font-mono">96904 99137</span>
+                <span className="font-mono whitespace-nowrap">96904 99137</span>
               </a>
             </div>
 
